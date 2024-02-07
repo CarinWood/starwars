@@ -1,15 +1,24 @@
-const baseUrl = 'https://swapi.dev/api/'
+const baseUrl = "https://swapi.dev/api/people/";
 
-async function fetchStarwars() {
-    try {
-        const response = await fetch(baseUrl + "people/1")
-        const data = await response.json()
-        console.log(data)
-    }
-    catch (error){
-        console.error("Error", error)
-    }
-  
+async function fetchStarwars(num) {
+  try {
+    const response = await fetch(baseUrl + num);
+    const data = await response.json();
+    return data.name;
+  } catch (error) {
+    console.error("Error", error);
+  }
 }
 
-fetchStarwars()
+let characterList = document.querySelector(".characters");
+let luke = document.querySelector(".luke");
+
+for (let i = 0; i <= 6; i++) {
+  fetchStarwars(i + 1)
+    .then((name) => (characterList.children[i].innerText = name))
+    .catch((error) => console.error("Error", error));
+}
+
+fetchStarwars(6)
+  .then((name) => console.log(name))
+  .catch((error) => console.error("Error", error));
