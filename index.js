@@ -1,22 +1,28 @@
 let spinner = document.querySelector(".spinner");
 spinner.style.display = "none";
 let characterList = document.querySelector(".characters");
+let charName = document.querySelector(".charName");
 let height = document.querySelector(".height");
-
+let mass = document.querySelector(".mass");
+let hairColor = document.querySelector(".hair");
+let skinColor = document.querySelector(".skin");
+let eyeColor = document.querySelector(".eye");
+let birthYear = document.querySelector(".birth");
+let gender = document.querySelector(".gender");
 const baseUrl = "https://swapi.dev/api/people/";
 
 async function fetchCharacterDetails(num) {
   try {
     const response = await fetch(baseUrl + num + "/");
     const data = await response.json();
-    console.log(data.name);
+    charName.innerText = "Name: " + data.name;
     height.innerText = "Height:" + data.height;
-    console.log(data.mass);
-    console.log(data.hair_color);
-    console.log(data.skin_color);
-    console.log(data.eye_color);
-    console.log(data.birth_year);
-    console.log(data.gender);
+    mass.innerText = "Mass: " + data.mass;
+    hairColor.innerText = "Hair color: " + data.hair_color;
+    skinColor.innerText = "Skin color: " + data.skin_color;
+    eyeColor.innerText = "Eye color: " + data.eye_color;
+    birthYear.innerText = "Birth year: " + data.birth_year;
+    gender.innerText = "Gender: " + data.gender;
   } catch (error) {
     console.error("Error", error);
   }
@@ -37,7 +43,6 @@ async function fetchStarwars(num) {
     characterList.style.display = "block";
   }
 }
-
 
 let paginationArea = document.querySelector(".pagination");
 let rightArrow = paginationArea.children[3];
