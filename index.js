@@ -57,12 +57,6 @@ async function fetchDataAndUpdateDOM(startIndex, endIndex) {
     try {
       const name = await fetchStarwars(i);
       characterList.children[i - startIndex].innerText = name;
-      characterList.children[i - startIndex].addEventListener(
-        "click",
-        async () => {
-          await fetchCharacterDetails(i);
-        }
-      );
     } catch (error) {
       console.error("Error", error);
     }
@@ -105,3 +99,45 @@ function back() {
 setInitialData();
 rightArrow.addEventListener("click", forward);
 leftArrow.addEventListener("click", back);
+
+let first = characterList.children[0].addEventListener("click", () => {
+  switch (num) {
+    case 1:
+      fetchCharacterDetails(1);
+      break;
+    case 2:
+      fetchCharacterDetails(7);
+      break;
+    case 3:
+      fetchCharacterDetails(13);
+      break;
+    case 4:
+      fetchCharacterDetails(19);
+      break;
+    case 5:
+      fetchCharacterDetails(25);
+      break;
+    case 6:
+      fetchCharacterDetails(31);
+      break;
+    case 7:
+      fetchCharacterDetails(37);
+      break;
+    case 8:
+      fetchCharacterDetails(43);
+  }
+
+  /*   if (num === 1) {
+    fetchCharacterDetails(1);
+  } else if (num === 2) {
+    fetchCharacterDetails(7);
+  } else if (num === 3) {
+    fetchCharacterDetails(13);
+  } else if (num === 4) {
+    fetchCharacterDetails(19);
+  } else if (num === 5) {
+    fetchCharacterDetails(25);
+  } else if (num === 6) {
+    fetchCharacterDetails(31);
+  } */
+});
