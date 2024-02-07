@@ -21,6 +21,7 @@ for (let i = 0; i <= 6; i++) {
 
 let paginationArea = document.querySelector(".pagination");
 let rightArrow = paginationArea.children[3];
+let leftArrow = paginationArea.children[0];
 let page = document.querySelector(".page");
 let num = 1;
 
@@ -28,10 +29,35 @@ function forward() {
   if (num === 8) {
     page.innerText = 8;
   } else {
-    num ++
-    page.innerText = num
+    num++;
+    page.innerText = num;
   }
- 
+
+  if (num === 2) {
+    for (let i = 7; i <= 12; i++) {
+      fetchStarwars(i)
+        .then((name) => (characterList.children[i-7].innerText = name))
+        .catch((error) => console.error("Error", error));
+    
+    }
+  } else if (num === 3) {
+    for (let i = 13; i <= 18; i++) {
+        fetchStarwars(i)
+        .then((name) => (characterList.children[i-13].innerText = name))
+        .catch((error) => console.error("Error", error));
+        
+    }
+  }
+}
+
+function back() {
+  if (num === 1) {
+    page.innerText = 1;
+  } else {
+    num--;
+    page.innerText = num;
+  }
 }
 
 rightArrow.addEventListener("click", forward);
+leftArrow.addEventListener("click", back);
