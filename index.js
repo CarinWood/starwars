@@ -19,6 +19,19 @@ for (let i = 0; i <= 6; i++) {
     .catch((error) => console.error("Error", error));
 }
 
-fetchStarwars(6)
-  .then((name) => console.log(name))
-  .catch((error) => console.error("Error", error));
+let paginationArea = document.querySelector(".pagination");
+let rightArrow = paginationArea.children[3];
+let page = document.querySelector(".page");
+let num = 1;
+
+function forward() {
+  if (num === 8) {
+    page.innerText = 8;
+  } else {
+    num ++
+    page.innerText = num
+  }
+ 
+}
+
+rightArrow.addEventListener("click", forward);
