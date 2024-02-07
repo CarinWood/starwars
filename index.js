@@ -1,3 +1,5 @@
+let spinner = document.querySelector(".spinner");
+spinner.style.display = "none";
 const baseUrl = "https://swapi.dev/api/people/";
 
 async function fetchStarwars(num) {
@@ -25,6 +27,19 @@ let leftArrow = paginationArea.children[0];
 let page = document.querySelector(".page");
 let num = 1;
 
+async function fetchDataAndUpdateDOM(startIndex, endIndex) {
+  spinner.style.display = "block";
+  for (let i = startIndex; i <= endIndex; i++) {
+    try {
+      const name = await fetchStarwars(i);
+      characterList.children[i - startIndex].innerText = name;
+    } catch (error) {
+      console.error("Error", error);
+    }
+  }
+  spinner.style.display = "none";
+}
+
 function forward() {
   if (num === 8) {
     page.innerText = 8;
@@ -33,21 +48,9 @@ function forward() {
     page.innerText = num;
   }
 
-  if (num === 2) {
-    for (let i = 7; i <= 12; i++) {
-      fetchStarwars(i)
-        .then((name) => (characterList.children[i-7].innerText = name))
-        .catch((error) => console.error("Error", error));
-    
-    }
-  } else if (num === 3) {
-    for (let i = 13; i <= 18; i++) {
-        fetchStarwars(i)
-        .then((name) => (characterList.children[i-13].innerText = name))
-        .catch((error) => console.error("Error", error));
-        
-    }
-  }
+  const startIndex = (num - 1) * 6 + 1;
+  const endIndex = num * 6;
+  fetchDataAndUpdateDOM(startIndex, endIndex);
 }
 
 function back() {
@@ -57,6 +60,10 @@ function back() {
     num--;
     page.innerText = num;
   }
+
+  const startIndex = (num - 1) * 6 + 1;
+  const endIndex = num * 6;
+  fetchDataAndUpdateDOM(startIndex, endIndex);
 }
 
 rightArrow.addEventListener("click", forward);
