@@ -205,5 +205,35 @@ body {
     color: whitesmoke;  
   }
 
+  @media screen and (max-width: 601px) {
+    .header-text {
+        left: 50%;
+        margin-left: -140px;
+    }
+
+    .container, .container-2 {
+        width: 360px;
+        height: 360px;
+        bottom: 10%;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 99;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .container-2 {
+        bottom: -37%;
+        left: 50%;
+        background-color: #c4c4c4;
+    }
+
+
+
+
+
+
+  }
+
 
 
