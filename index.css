@@ -137,7 +137,7 @@ body {
     margin-right: 5px;
 }
 
-.spinner {
+.spinner, .spinny-2 {
     position: absolute;
     bottom: 240%;
     width: 48px;
@@ -151,6 +151,14 @@ body {
     animation: rotation 1s linear infinite;
     }
 
+  .spinny-2 {
+    z-index: 100;
+    position: initial;
+    margin-left: 165px;
+    margin-top: 50px;
+    animation: rotation2 1s linear infinite;
+  }
+
     @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -159,11 +167,17 @@ body {
         transform: rotate(360deg);
     }
     } 
+
+    @keyframes rotation2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
   
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+  
 
   .planet-info {
     width: 100%;
@@ -171,6 +185,16 @@ body {
     background-color: #8e8e8e;
     position: absolute;
     bottom: 0;
+    border-radius: 0px 0px 10px 10px
+  }
+
+  .planet-name {
+    margin: 10px 0px 10px 20px;
+  }
+
+  .dark {
+    background-color: #444444;
+    color: whitesmoke;  
   }
 
 
