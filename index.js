@@ -1,8 +1,10 @@
 let spinner = document.querySelector(".spinner");
 let spinner2 = document.querySelector(".spinny-2");
+let spinner3 = document.querySelector(".spinny-3");
 spinner.style.display = "none";
 spinner2.style.display = "none";
-let container2 = document.querySelector('.char-attributes')
+spinner3.style.display = "none";
+let container2 = document.querySelector(".char-attributes");
 let characterList = document.querySelector(".characters");
 let charName = document.querySelector(".charName");
 let height = document.querySelector(".height");
@@ -23,7 +25,7 @@ const baseUrl = "https://swapi.dev/api/people/";
 
 async function fetchCharacterDetails(num) {
   spinner2.style.display = "block";
-  container2.style.display = 'none';
+  container2.style.display = "none";
   try {
     const response = await fetch(baseUrl + num + "/");
     const data = await response.json();
@@ -36,13 +38,14 @@ async function fetchCharacterDetails(num) {
     birthYear.innerText = "Birth year: " + data.birth_year;
     gender.innerText = "Gender: " + data.gender;
     spinner2.style.display = "none";
-    container2.style.display = "block"
+    container2.style.display = "block";
   } catch (error) {
     console.error("Error", error);
   }
 }
 
 async function getPlanetInfo(num) {
+  spinner3.style.display = "block";
   try {
     const res = await fetch("https://swapi.dev/api/planets/" + num);
     const data = await res.json();
@@ -54,6 +57,7 @@ async function getPlanetInfo(num) {
     climate.innerText = "Climate: " + data.climate;
     gravity.innerText = "Gravity: " + data.gravity;
     gravity.innerText = "Terrain : " + data.terrain;
+    spinner3.style.display = "none";
   } catch (error) {
     console.log("Error", error);
   }

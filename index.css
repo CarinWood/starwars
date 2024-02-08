@@ -137,7 +137,7 @@ body {
     margin-right: 5px;
 }
 
-.spinner, .spinny-2 {
+.spinner, .spinny-2, .spinny-3 {
     position: absolute;
     bottom: 240%;
     width: 48px;
@@ -151,7 +151,15 @@ body {
     animation: rotation 1s linear infinite;
     }
 
+    .spinny-3 {
+        bottom: 30%;
+        left: 50%;
+        margin-left: -24px;
+    }
+
   .spinny-2 {
+    z-index: 100;
+    position: absolute;
     z-index: 100;
     position: initial;
     margin-left: 165px;
