@@ -21,6 +21,7 @@ let diameter = document.querySelector(".diameter");
 let climate = document.querySelector(".climate");
 let gravity = document.querySelector(".gravity");
 let terrain = document.querySelector(".terrain");
+let characterData = {};
 const baseUrl = "https://swapi.dev/api/people/";
 
 async function fetchCharacterDetails(num) {
@@ -37,6 +38,7 @@ async function fetchCharacterDetails(num) {
     eyeColor.innerText = "Eye color: " + data.eye_color;
     birthYear.innerText = "Birth year: " + data.birth_year;
     gender.innerText = "Gender: " + data.gender;
+    getPlanetInfo(data.homeworld);
     spinner2.style.display = "none";
     container2.style.display = "block";
   } catch (error) {
@@ -44,10 +46,10 @@ async function fetchCharacterDetails(num) {
   }
 }
 
-async function getPlanetInfo(num) {
+async function getPlanetInfo(planet) {
   spinner3.style.display = "block";
   try {
-    const res = await fetch("https://swapi.dev/api/planets/" + num);
+    const res = await fetch(planet);
     const data = await res.json();
     planetName.innerText = data.name;
     rotation.innerText = "Rotation Period: " + data.rotation_period + " h";
@@ -71,6 +73,8 @@ async function fetchStarwars(num) {
     const data = await response.json();
     spinner.style.display = "none";
     characterList.style.display = "block";
+    characterData[num] = data;
+    console.log(characterData);
     return data.name;
   } catch (error) {
     console.error("Error", error);
@@ -149,35 +153,27 @@ let first = characterList.children[0].addEventListener("click", () => {
   switch (num) {
     case 1:
       fetchCharacterDetails(1);
-      getPlanetInfo(1);
       break;
     case 2:
       fetchCharacterDetails(7);
-      getPlanetInfo(7);
       break;
     case 3:
       fetchCharacterDetails(13);
-      getPlanetInfo(13);
       break;
     case 4:
       fetchCharacterDetails(19);
-      getPlanetInfo(19);
       break;
     case 5:
       fetchCharacterDetails(25);
-      getPlanetInfo(25);
       break;
     case 6:
       fetchCharacterDetails(31);
-      getPlanetInfo(31);
       break;
     case 7:
       fetchCharacterDetails(37);
-      getPlanetInfo(37);
       break;
     case 8:
       fetchCharacterDetails(43);
-      getPlanetInfo(43);
       break;
     default:
       "";
@@ -192,35 +188,27 @@ let second = characterList.children[1].addEventListener("click", () => {
   switch (num) {
     case 1:
       fetchCharacterDetails(2);
-      getPlanetInfo(2);
       break;
     case 2:
       fetchCharacterDetails(8);
-      getPlanetInfo(8);
       break;
     case 3:
       fetchCharacterDetails(14);
-      getPlanetInfo(14);
       break;
     case 4:
       fetchCharacterDetails(20);
-      getPlanetInfo(20);
       break;
     case 5:
       fetchCharacterDetails(26);
-      getPlanetInfo(26);
       break;
     case 6:
       fetchCharacterDetails(32);
-      getPlanetInfo(32);
       break;
     case 7:
       fetchCharacterDetails(38);
-      getPlanetInfo(38);
       break;
     case 8:
       fetchCharacterDetails(44);
-      getPlanetInfo(44);
       break;
   }
 });
@@ -233,35 +221,27 @@ let third = characterList.children[2].addEventListener("click", () => {
   switch (num) {
     case 1:
       fetchCharacterDetails(3);
-      getPlanetInfo(3);
       break;
     case 2:
       fetchCharacterDetails(9);
-      getPlanetInfo(9);
       break;
     case 3:
       fetchCharacterDetails(15);
-      getPlanetInfo(15);
       break;
     case 4:
       fetchCharacterDetails(21);
-      getPlanetInfo(21);
       break;
     case 5:
       fetchCharacterDetails(27);
-      getPlanetInfo(27);
       break;
     case 6:
       fetchCharacterDetails(33);
-      getPlanetInfo(33);
       break;
     case 7:
       fetchCharacterDetails(39);
-      getPlanetInfo(39);
       break;
     case 8:
       fetchCharacterDetails(45);
-      getPlanetInfo(45);
       break;
   }
 });
@@ -274,35 +254,27 @@ let fourth = characterList.children[3].addEventListener("click", () => {
   switch (num) {
     case 1:
       fetchCharacterDetails(4);
-      getPlanetInfo(4);
       break;
     case 2:
       fetchCharacterDetails(10);
-      getPlanetInfo(10);
       break;
     case 3:
       fetchCharacterDetails(16);
-      getPlanetInfo(16);
       break;
     case 4:
       fetchCharacterDetails(22);
-      getPlanetInfo(22);
       break;
     case 5:
       fetchCharacterDetails(28);
-      getPlanetInfo(28);
       break;
     case 6:
       fetchCharacterDetails(34);
-      getPlanetInfo(34);
       break;
     case 7:
       fetchCharacterDetails(40);
-      getPlanetInfo(40);
       break;
     case 8:
       fetchCharacterDetails(46);
-      getPlanetInfo(46);
       break;
   }
 });
@@ -315,35 +287,27 @@ let fifth = characterList.children[4].addEventListener("click", () => {
   switch (num) {
     case 1:
       fetchCharacterDetails(5);
-      getPlanetInfo(5);
       break;
     case 2:
       fetchCharacterDetails(11);
-      getPlanetInfo(11);
       break;
     case 3:
       fetchCharacterDetails(17);
-      getPlanetInfo(17);
       break;
     case 4:
       fetchCharacterDetails(23);
-      getPlanetInfo(23);
       break;
     case 5:
       fetchCharacterDetails(29);
-      getPlanetInfo(29);
       break;
     case 6:
       fetchCharacterDetails(35);
-      getPlanetInfo(35);
       break;
     case 7:
       fetchCharacterDetails(41);
-      getPlanetInfo(41);
       break;
     case 8:
       fetchCharacterDetails(47);
-      getPlanetInfo(47);
       break;
   }
 });
@@ -356,35 +320,27 @@ let sixth = characterList.children[5].addEventListener("click", () => {
   switch (num) {
     case 1:
       fetchCharacterDetails(6);
-      getPlanetInfo(6);
       break;
     case 2:
       fetchCharacterDetails(12);
-      getPlanetInfo(12);
       break;
     case 3:
       fetchCharacterDetails(18);
-      getPlanetInfo(18);
       break;
     case 4:
       fetchCharacterDetails(24);
-      getPlanetInfo(24);
       break;
     case 5:
       fetchCharacterDetails(30);
-      getPlanetInfo(30);
       break;
     case 6:
       fetchCharacterDetails(36);
-      getPlanetInfo(36);
       break;
     case 7:
       fetchCharacterDetails(42);
-      getPlanetInfo(42);
       break;
     case 8:
       fetchCharacterDetails(48);
-      getPlanetInfo(48);
       break;
   }
 });
