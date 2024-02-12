@@ -1,8 +1,6 @@
 let spinner = document.querySelector(".spinner");
-let spinner2 = document.querySelector(".spinny-2");
 let spinner3 = document.querySelector(".spinny-3");
 spinner.style.display = "none";
-spinner2.style.display = "none";
 spinner3.style.display = "none";
 let container2 = document.querySelector(".char-attributes");
 let characterList = document.querySelector(".characters");
@@ -25,29 +23,39 @@ let characterData = {};
 const baseUrl = "https://swapi.dev/api/people/";
 
 async function fetchCharacterDetails(num) {
-  spinner2.style.display = "block";
-  container2.style.display = "none";
-  try {
-    const response = await fetch(baseUrl + num + "/");
-    const data = await response.json();
-    charName.innerText = "Name: " + data.name;
-    height.innerText = "Height:" + data.height;
-    mass.innerText = "Mass: " + data.mass;
-    hairColor.innerText = "Hair color: " + data.hair_color;
-    skinColor.innerText = "Skin color: " + data.skin_color;
-    eyeColor.innerText = "Eye color: " + data.eye_color;
-    birthYear.innerText = "Birth year: " + data.birth_year;
-    gender.innerText = "Gender: " + data.gender;
-    getPlanetInfo(data.homeworld);
-    spinner2.style.display = "none";
-    container2.style.display = "block";
-  } catch (error) {
-    console.error("Error", error);
-  }
+  charName.innerText = "";
+  height.innerText = "";
+  mass.innerText = "";
+  hairColor.innerText = "";
+  skinColor.innerText = "";
+  eyeColor.innerText = "";
+  birthYear.innerText = "";
+  gender.innerText = "";
+  document.querySelector(".spinny-spin").style.visibility = "visible";
+
+  setTimeout(() => {
+    getPlanetInfo(characterData[num].homeworld);
+    document.querySelector(".spinny-spin").style.visibility = "hidden";
+    charName.innerText = "Name: " + characterData[num].name;
+    height.innerText = "Height:" + characterData[num].height;
+    mass.innerText = "Mass: " + characterData[num].mass;
+    hairColor.innerText = "Hair color: " + characterData[num].hair_color;
+    skinColor.innerText = "Skin color: " + characterData[num].skin_color;
+    eyeColor.innerText = "Eye color: " + characterData[num].eye_color;
+    birthYear.innerText = "Birth year: " + characterData[num].birth_year;
+    gender.innerText = "Gender: " + characterData[num].gender;
+  }, 400);
 }
 
 async function getPlanetInfo(planet) {
   spinner3.style.display = "block";
+  planetName.innerText = "";
+  rotation.innerText = "";
+  orbitalPeriod.innerText = "";
+  diameter.innerText = "";
+  climate.innerText = "";
+  gravity.innerText = "";
+  terrain.innerText = "";
   try {
     const res = await fetch(planet);
     const data = await res.json();
@@ -58,7 +66,7 @@ async function getPlanetInfo(planet) {
     diameter.innerText = "Diameter: " + data.diameter + " km";
     climate.innerText = "Climate: " + data.climate;
     gravity.innerText = "Gravity: " + data.gravity;
-    gravity.innerText = "Terrain : " + data.terrain;
+    terrain.innerText = "Terrain : " + data.terrain;
     spinner3.style.display = "none";
   } catch (error) {
     console.log("Error", error);
@@ -74,7 +82,6 @@ async function fetchStarwars(num) {
     spinner.style.display = "none";
     characterList.style.display = "block";
     characterData[num] = data;
-    console.log(characterData);
     return data.name;
   } catch (error) {
     console.error("Error", error);

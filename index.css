@@ -157,14 +157,22 @@ body {
         margin-left: -24px;
     }
 
-  .spinny-2 {
-    z-index: 100;
+  .spinny-spin {
     position: absolute;
-    z-index: 100;
-    position: initial;
-    margin-left: 165px;
-    margin-top: 50px;
-    animation: rotation2 1s linear infinite;
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    background-color: transparent;
+    animation: rotation 1s linear infinite;
+    z-index: 101;
+    top: 25%;
+    left: 50%;
+    margin-left: -24px;
+    visibility: hidden
   }
 
     @keyframes rotation {
@@ -197,7 +205,7 @@ body {
   }
 
   .planet-name {
-    margin: 10px 0px 10px 20px;
+    margin: 8px 0px 6px 20px;
   }
 
   .dark {
