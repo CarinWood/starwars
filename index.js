@@ -21,6 +21,7 @@ let gravity = document.querySelector(".gravity");
 let terrain = document.querySelector(".terrain");
 let characterData = {};
 let next = "";
+let previous = "";
 const baseUrl = "https://swapi.dev/api/people/";
 
 async function fetchCharacterDetails(num) {
@@ -83,7 +84,12 @@ async function fetchStarwars(url) {
     spinner.style.display = "none";
     characterList.style.display = "block";
     characterData = data.results;
+    for (const character in characterData) {
+      console.log(characterData[character].name);
+    }
+
     next = data.next;
+    previous = data.previous;
     for (let i = 0; i < 10; i++) {
       characterList.children[i].innerText = data.results[i].name;
     }
@@ -107,6 +113,7 @@ function forward() {
   }
   num++;
   page.innerText = num;
+  console.log(num);
   fetchStarwars(next);
 }
 
@@ -115,19 +122,15 @@ function setInitialData() {
 }
 
 function back() {
-  for (let i = 0; i < 6; i++) {
+  if (num === 1) return;
+  for (let i = 0; i < 10; i++) {
     characterList.children[i].classList.remove("dark");
   }
-  if (num === 1) {
-    page.innerText = 1;
-  } else {
-    num--;
-    page.innerText = num;
-  }
 
-  const startIndex = (num - 1) * 6 + 1;
-  const endIndex = num * 6;
-  fetchDataAndUpdateDOM(startIndex, endIndex);
+  num--;
+  page.innerText = num;
+
+  fetchStarwars(previous);
 }
 
 setInitialData();
@@ -139,67 +142,15 @@ let first = characterList.children[0].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[0].classList.add("dark");
-  switch (num) {
-    case 1:
-      fetchCharacterDetails(0);
-      break;
-    case 2:
-      fetchCharacterDetails(6);
-      break;
-    case 3:
-      fetchCharacterDetails(12);
-      break;
-    case 4:
-      fetchCharacterDetails(18);
-      break;
-    case 5:
-      fetchCharacterDetails(24);
-      break;
-    case 6:
-      fetchCharacterDetails(30);
-      break;
-    case 7:
-      fetchCharacterDetails(36);
-      break;
-    case 8:
-      fetchCharacterDetails(42);
-      break;
-    default:
-      "";
-  }
+  fetchCharacterDetails(0);
+ 
 });
 
 let second = characterList.children[1].addEventListener("click", () => {
   for (let i = 0; i < 10; i++) {
     characterList.children[i].classList.remove("dark");
   }
-  characterList.children[1].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(1);
-      break;
-    case 2:
-      fetchCharacterDetails(7);
-      break;
-    case 3:
-      fetchCharacterDetails(13);
-      break;
-    case 4:
-      fetchCharacterDetails(19);
-      break;
-    case 5:
-      fetchCharacterDetails(25);
-      break;
-    case 6:
-      fetchCharacterDetails(31);
-      break;
-    case 7:
-      fetchCharacterDetails(37);
-      break;
-    case 8:
-      fetchCharacterDetails(43);
-      break;
-  }
 });
 
 let third = characterList.children[2].addEventListener("click", () => {
@@ -207,32 +158,7 @@ let third = characterList.children[2].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[2].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(2);
-      break;
-    case 2:
-      fetchCharacterDetails(8);
-      break;
-    case 3:
-      fetchCharacterDetails(14);
-      break;
-    case 4:
-      fetchCharacterDetails(20);
-      break;
-    case 5:
-      fetchCharacterDetails(26);
-      break;
-    case 6:
-      fetchCharacterDetails(32);
-      break;
-    case 7:
-      fetchCharacterDetails(38);
-      break;
-    case 8:
-      fetchCharacterDetails(44);
-      break;
-  }
 });
 
 let fourth = characterList.children[3].addEventListener("click", () => {
@@ -240,32 +166,8 @@ let fourth = characterList.children[3].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[3].classList.add("dark");
-  switch (num) {
-    case 1:
+  
       fetchCharacterDetails(3);
-      break;
-    case 2:
-      fetchCharacterDetails(9);
-      break;
-    case 3:
-      fetchCharacterDetails(15);
-      break;
-    case 4:
-      fetchCharacterDetails(21);
-      break;
-    case 5:
-      fetchCharacterDetails(27);
-      break;
-    case 6:
-      fetchCharacterDetails(33);
-      break;
-    case 7:
-      fetchCharacterDetails(39);
-      break;
-    case 8:
-      fetchCharacterDetails(45);
-      break;
-  }
 });
 
 let fifth = characterList.children[4].addEventListener("click", () => {
@@ -273,32 +175,7 @@ let fifth = characterList.children[4].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[4].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(4);
-      break;
-    case 2:
-      fetchCharacterDetails(10);
-      break;
-    case 3:
-      fetchCharacterDetails(16);
-      break;
-    case 4:
-      fetchCharacterDetails(22);
-      break;
-    case 5:
-      fetchCharacterDetails(29);
-      break;
-    case 6:
-      fetchCharacterDetails(34);
-      break;
-    case 7:
-      fetchCharacterDetails(40);
-      break;
-    case 8:
-      fetchCharacterDetails(46);
-      break;
-  }
 });
 
 let sixth = characterList.children[5].addEventListener("click", () => {
@@ -306,32 +183,7 @@ let sixth = characterList.children[5].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[5].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(5);
-      break;
-    case 2:
-      fetchCharacterDetails(11);
-      break;
-    case 3:
-      fetchCharacterDetails(17);
-      break;
-    case 4:
-      fetchCharacterDetails(23);
-      break;
-    case 5:
-      fetchCharacterDetails(29);
-      break;
-    case 6:
-      fetchCharacterDetails(35);
-      break;
-    case 7:
-      fetchCharacterDetails(41);
-      break;
-    case 8:
-      fetchCharacterDetails(47);
-      break;
-  }
 });
 
 let seventh = characterList.children[6].addEventListener("click", () => {
@@ -339,32 +191,7 @@ let seventh = characterList.children[6].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[6].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(6);
-      break;
-    case 2:
-      fetchCharacterDetails(16);
-      break;
-    case 3:
-      fetchCharacterDetails(17);
-      break;
-    case 4:
-      fetchCharacterDetails(23);
-      break;
-    case 5:
-      fetchCharacterDetails(29);
-      break;
-    case 6:
-      fetchCharacterDetails(35);
-      break;
-    case 7:
-      fetchCharacterDetails(41);
-      break;
-    case 8:
-      fetchCharacterDetails(47);
-      break;
-  }
 });
 
 let eigth = characterList.children[7].addEventListener("click", () => {
@@ -372,32 +199,7 @@ let eigth = characterList.children[7].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[7].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(7);
-      break;
-    case 2:
-      fetchCharacterDetails(16);
-      break;
-    case 3:
-      fetchCharacterDetails(17);
-      break;
-    case 4:
-      fetchCharacterDetails(23);
-      break;
-    case 5:
-      fetchCharacterDetails(29);
-      break;
-    case 6:
-      fetchCharacterDetails(35);
-      break;
-    case 7:
-      fetchCharacterDetails(41);
-      break;
-    case 8:
-      fetchCharacterDetails(47);
-      break;
-  }
 });
 
 let nineth = characterList.children[8].addEventListener("click", () => {
@@ -405,32 +207,7 @@ let nineth = characterList.children[8].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[8].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(8);
-      break;
-    case 2:
-      fetchCharacterDetails(16);
-      break;
-    case 3:
-      fetchCharacterDetails(17);
-      break;
-    case 4:
-      fetchCharacterDetails(23);
-      break;
-    case 5:
-      fetchCharacterDetails(29);
-      break;
-    case 6:
-      fetchCharacterDetails(35);
-      break;
-    case 7:
-      fetchCharacterDetails(41);
-      break;
-    case 8:
-      fetchCharacterDetails(47);
-      break;
-  }
 });
 
 let tenth = characterList.children[9].addEventListener("click", () => {
@@ -438,30 +215,5 @@ let tenth = characterList.children[9].addEventListener("click", () => {
     characterList.children[i].classList.remove("dark");
   }
   characterList.children[9].classList.add("dark");
-  switch (num) {
-    case 1:
       fetchCharacterDetails(9);
-      break;
-    case 2:
-      fetchCharacterDetails(16);
-      break;
-    case 3:
-      fetchCharacterDetails(17);
-      break;
-    case 4:
-      fetchCharacterDetails(23);
-      break;
-    case 5:
-      fetchCharacterDetails(29);
-      break;
-    case 6:
-      fetchCharacterDetails(35);
-      break;
-    case 7:
-      fetchCharacterDetails(41);
-      break;
-    case 8:
-      fetchCharacterDetails(47);
-      break;
-  }
 });
